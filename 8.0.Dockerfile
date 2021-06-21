@@ -39,7 +39,7 @@ ENV DB_FILTER=.* \
 RUN sed -Ei 's@(^deb http://deb.debian.org/debian jessie-updates main$)@#\1@' /etc/apt/sources.list \
     && apt-get update \
     && apt-get -y upgrade \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -y --no-install-recommends --force-yes \
         python ruby-compass \
         fontconfig libfreetype6 libxml2 libxslt1.1 libjpeg62-turbo zlib1g \
         fonts-liberation \
