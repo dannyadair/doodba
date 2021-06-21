@@ -65,6 +65,7 @@ RUN sed -Ei 's@(^deb http://deb.debian.org/debian jessie-updates main$)@#\1@' /e
     && rm -Rf /var/lib/apt/lists/*
 
 # Special case to get latest PostgreSQL client in 250-postgres-client
+RUN echo 'Acquire::Check-Valid-Until "false";' | tee /etc/apt/apt.conf.d/00snapshot
 RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main' >> /etc/apt/sources.list.d/postgresql.list
 
 # Special case to get latest Less and PhantomJS
