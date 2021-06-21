@@ -39,7 +39,7 @@ ENV DB_FILTER=.* \
 RUN sed -Ei 's@(^deb http://deb.debian.org/debian jessie-updates main$)@#\1@' /etc/apt/sources.list \
     && apt-get update \
     && apt-get -y upgrade \
-    && apt-get install -y --no-install-recommends --force-yes \
+    && apt-get install -y --no-install-recommends \
         python ruby-compass \
         fontconfig libfreetype6 libxml2 libxslt1.1 libjpeg62-turbo zlib1g \
         fonts-liberation \
@@ -50,7 +50,7 @@ RUN sed -Ei 's@(^deb http://deb.debian.org/debian jessie-updates main$)@#\1@' /e
         openssh-client telnet xz-utils \
     && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python /dev/stdin \
     && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-    && apt-get install -yqq nodejs \
+    && apt-get install -yqq --force-yes nodejs \
     && curl -SLo fonts-liberation2.deb http://ftp.debian.org/debian/pool/main/f/fonts-liberation2/fonts-liberation2_2.00.1-3_all.deb \
     && dpkg --install fonts-liberation2.deb \
     && curl -SLo wkhtmltox.deb https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/${WKHTMLTOPDF_VERSION}/wkhtmltox_${WKHTMLTOPDF_VERSION}-1.jessie_amd64.deb \
