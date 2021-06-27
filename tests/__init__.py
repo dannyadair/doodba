@@ -290,7 +290,7 @@ class ScaffoldingCase(unittest.TestCase):
             ("ssh", "-V"),
             ("python", "-c", "import plumbum"),
             # We are able to dump
-            #("pg_dump", "-f/var/lib/odoo/prod.sql", "prod"),
+            # ("pg_dump", "-f/var/lib/odoo/prod.sql", "prod"),
             # Geoip should not be activated
             ("bash", "-xc", 'test "$(which geoipupdate)" != ""'),
             ("test", "!", "-e", "/usr/share/GeoIP/GeoLite2-City.mmdb"),
