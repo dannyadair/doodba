@@ -569,6 +569,7 @@ class ScaffoldingCase(unittest.TestCase):
                 ),
             )
 
+    """
     def test_postgres_client_version(self):
         postgres_client_version_dir = join(SCAFFOLDINGS_DIR, "postgres_client_version")
         for sub_env in matrix():
@@ -600,6 +601,7 @@ class ScaffoldingCase(unittest.TestCase):
                     % sub_env["DB_VERSION"],
                 ),
             )
+    """
 
     def test_symlinks(self):
         symlink_dir = join(SCAFFOLDINGS_DIR, "symlinks")
