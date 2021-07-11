@@ -73,14 +73,16 @@ jobs:
       - run: poetry run python -m unittest -v tests
       # Push
       - name: push to docker hub
-        if: github.repository == 'dannyadair/doodba' && github.ref == 'refs/heads/master'
+        if:
+          github.repository == 'dannyadair/doodba' && github.ref == 'refs/heads/master'
         env:
           REGISTRY_HOST: docker.io
           REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
           REGISTRY_USERNAME: ${{ secrets.DOCKERHUB_LOGIN }}
         run: poetry run ./hooks/push
       - name: push to github container registry
-        if: github.repository == 'dannyadair/doodba' && github.ref == 'refs/heads/master'
+        if:
+          github.repository == 'dannyadair/doodba' && github.ref == 'refs/heads/master'
         env:
           REGISTRY_HOST: ghcr.io
           REGISTRY_PASSWORD: ${{ secrets.BOT_TOKEN }}
