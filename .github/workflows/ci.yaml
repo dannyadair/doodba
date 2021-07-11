@@ -44,10 +44,6 @@ jobs:
         include:
           - odoo_version: "9.0"
             pg_version: "11"
-          - odoo_version: "8.0"
-            pg_version: "10"
-          - odoo_version: "7.0"
-            pg_version: "9.6"
     env:
       # Indicates what's the equivalent to dannyadair/doodba:latest image
       LATEST_RELEASE: "14.0"
