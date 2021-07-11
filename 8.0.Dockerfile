@@ -65,8 +65,9 @@ RUN sed -Ei 's@(^deb http://deb.debian.org/debian jessie-updates main$)@#\1@' /e
     && rm -Rf /var/lib/apt/lists/*
 
 # Special case to get latest PostgreSQL client in 250-postgres-client
-RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' >> /etc/apt/sources.list.d/postgresql.list \
-    && curl -SL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+#RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' >> /etc/apt/sources.list.d/postgresql.list \
+#    && curl -SL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main' >> /etc/apt/sources.list.d/postgresql.list
 
 # Special case to get latest Less and PhantomJS
 RUN ln -s /usr/bin/nodejs /usr/local/bin/node \
