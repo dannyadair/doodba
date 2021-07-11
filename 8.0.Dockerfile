@@ -50,7 +50,7 @@ RUN sed -Ei 's@(^deb http://deb.debian.org/debian jessie-updates main$)@#\1@' /e
         openssh-client telnet xz-utils \
     && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python /dev/stdin \
     && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-    && apt-get install -yqq nodejs \
+    && apt-get install -yqq --force-yes nodejs \
     && curl -SLo fonts-liberation2.deb http://ftp.debian.org/debian/pool/main/f/fonts-liberation2/fonts-liberation2_2.00.1-3_all.deb \
     && dpkg --install fonts-liberation2.deb \
     && curl -SLo wkhtmltox.deb https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/${WKHTMLTOPDF_VERSION}/wkhtmltox_${WKHTMLTOPDF_VERSION}-1.jessie_amd64.deb \
@@ -113,11 +113,13 @@ RUN mkdir -p auto/addons auto/geoip custom/src/private \
 COPY qa /qa
 RUN virtualenv --system-site-packages /qa/venv \
     && . /qa/venv/bin/activate \
+    # HACK: Upgrade pip: higher version needed to install pyproject.toml based packages
+    && pip install -U pip \
     && pip install --no-cache-dir \
         click \
         coverage \
         flake8 \
-        pylint-odoo \
+        git+https://github.com/OCA/pylint-odoo.git@refs/pull/329/head \
         six \
     && npm install --loglevel error --prefix /qa 'eslint@<6' \
     && deactivate \
