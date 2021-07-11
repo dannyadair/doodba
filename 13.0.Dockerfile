@@ -130,9 +130,8 @@ RUN build_deps=" \
         'websocket-client~=0.56' \
         astor \
         git-aggregator \
-        # Install fix from https://github.com/acsone/click-odoo-contrib/pull/93
-        git+https://github.com/Tecnativa/click-odoo-contrib.git@fix-active-modules-hashing \
-        "pg_activity<2.0.0" \
+        click-odoo-contrib \
+        "pg_activity<=2.0.3" \
         phonenumbers \
         plumbum \
         ptvsd \

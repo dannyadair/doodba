@@ -238,9 +238,6 @@ class ScaffoldingCase(unittest.TestCase):
                 """test "$(psql -Atqc "SELECT code FROM res_lang
                                     WHERE active = TRUE")" == es_ES""",
             ),
-            # If `preparedb` is executed, we should have `report.url` set
-            ("preparedb",),
-            ("./custom/scripts/test_ir_config_parameters.py",),
         )
         for sub_env in matrix(odoo_skip={"7.0", "8.0", "9.0"}):
             self.compose_test(folder, sub_env, *commands)
@@ -290,7 +287,7 @@ class ScaffoldingCase(unittest.TestCase):
             ("ssh", "-V"),
             ("python", "-c", "import plumbum"),
             # We are able to dump
-            # ("pg_dump", "-f/var/lib/odoo/prod.sql", "prod"),
+            ("pg_dump", "-f/var/lib/odoo/prod.sql", "prod"),
             # Geoip should not be activated
             ("bash", "-xc", 'test "$(which geoipupdate)" != ""'),
             ("test", "!", "-e", "/usr/share/GeoIP/GeoLite2-City.mmdb"),
@@ -569,7 +566,6 @@ class ScaffoldingCase(unittest.TestCase):
                 ),
             )
 
-    """
     def test_postgres_client_version(self):
         postgres_client_version_dir = join(SCAFFOLDINGS_DIR, "postgres_client_version")
         for sub_env in matrix():
@@ -601,7 +597,6 @@ class ScaffoldingCase(unittest.TestCase):
                     % sub_env["DB_VERSION"],
                 ),
             )
-    """
 
     def test_symlinks(self):
         symlink_dir = join(SCAFFOLDINGS_DIR, "symlinks")
